@@ -8,7 +8,7 @@
   --color-pink: #d95578;
   --color-turkis: #3c88a6;
   --color-grau: #e6e6e6;
-  --color-grün: #66d9a3;
+  --color-grun: #66d9a3;
   --color-orange: #f2a341;
 }
 
@@ -73,7 +73,7 @@ h1 {
   height: 0.8rem;
   width: 0.8rem;
   cursor: pointer;
-  accent-color: var(--color-grün);
+  accent-color: var(--color-grun);
   border: 0.1rem solid var(--color-dunkelgrau);
   color: var(--color-dunkelgrau);
 }
@@ -85,6 +85,7 @@ h1 {
   color: var(--color-weiss);
   font-size: 1rem;
   padding: 0.5rem;
+  box-shadow: 3px -3px var(--color-pink);
 }
 
 .remove-btn:hover {
@@ -108,6 +109,15 @@ h1 {
 .input-field:focus {
   border: 0.1rem solid var(--color-orange);
 }
+
+.input-field:active {
+  border: 0.1rem solid var(--color-orange);
+}
+
+.input-field:invalid {
+  border: 0.1rem solid var(--color-orange);
+}
+
 .add-btn {
   background-color: var(--color-turkis);
   border: 0.1rem solid var(--color-turkis);
@@ -117,6 +127,7 @@ h1 {
   padding: 0.5rem;
   margin-top: 1rem;
   margin-left: 0.2rem;
+  box-shadow: 3px -3px var(--color-pink);
 }
 .add-btn:hover {
   cursor: pointer;
@@ -146,5 +157,5 @@ h1 {
   height: 1rem;
   width: 1rem;
   cursor: pointer;
-  accent-color: var(--color-grün);
+  accent-color: var(--color-grun);
 }

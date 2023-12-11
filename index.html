@@ -7,44 +7,47 @@
     <title>todo app</title>
     <link rel="stylesheet" href="style.css" />
 </head>
+<div id="app">
 
-<body id="app">
+    <body>
+        <header class="header">
+            <h1>Todo App</h1>
+        </header>
+        <main class="main">
+            <form class="filter-bar">
+                <div class="filter-all">
+                    <label for="all-checkbox">All</label>
+                    <input type="radio" id="all-checkbox" v-model="filter" value="all" />
+                </div>
+                <div class="filter-open">
+                    <label for="open-checkbox">Open</label>
+                    <input type="radio" id="open-checkbox" v-model="filter" value="open" />
+                </div>
+                <div class="filter-done">
+                    <label for="done-checkbox">Done</label>
+                    <input type="radio" id="done-checkbox" v-model="filter" value="done" />
+                </div>
+            </form>
+            <!--  bei Checkbox v-model mit value benutzen nicht @change-->
 
-    <header class="header">
-        <h1>Todo App</h1>
-    </header>
-    <main class="main">
-        <form class="filter-bar">
-            <div class="filter-all">
-                <label for="all-checkbox">All</label>
-                <input type="radio" id="all-checkbox" name="all-checkbox" />
-            </div>
-            <div class="filter-open">
-                <label for="open-checkbox">Open</label>
-                <input type="radio" id="open-checkbox" name="open-checkbox" />
-            </div>
-            <div class="filter-done">
-                <label for="done-checkbox">Done</label>
-                <input type="radio" id="done-checkbox" name="done-checkbox" />
-            </div>
-        </form>
-        <button id="remove-btn" class="remove-btn">Remove done Todos</button>
-        <br>
-        <input v-model="newTodo" type="text" id="new-todo" class="input-field" name="new-todo"
-            placeholder="add new todo...">
-        <!--  @keyup.enter="addTodo" -->
-        <button id="add-btn" class="add-btn" @click.prevent="addTodo">Add</button>
-        <ul id="todo-list" v-for="todo in state" :key="state.id">
-            <li>
-                <input name="todo-checkbox" id="todo-checkbox" type="checkbox" class="todo-checkbox" v-model="todo.done"
-                    @change="updateTodoToAPI(todo)" />
-                <label for="todo-checkbox" class="todo">{{ todo.description }} </label>
-            </li>
+            <button @click="removeDoneTodos" id="remove-btn" class="remove-btn">Remove done Todos</button>
+            <br>
+            <input v-model="newTodo" type="text" id="new-todo" class="input-field" name="new-todo"
+                placeholder="add new todo...">
+            <!--  @keyup.enter="addTodo" -->
+            <button id="add-btn" class="add-btn" @click.prevent="addTodo">Add</button>
+            <ul id="todo-list">
+                <li v-for="todo in filteredTodos" :key="todo.id">
+                    <input name="todo-checkbox" id="todo-checkbox" type="checkbox" class="todo-checkbox"
+                        v-model="todo.done" @change="updateTodoToAPI(todo)" />
+                    <label for="todo-checkbox" class="todo">{{ todo.description }} </label>
+                </li>
 
-        </ul>
-    </main>
-    <script src="https://unpkg.com/vue@next"></script>
-    <script src="script.js"></script>
-</body>
+            </ul>
+        </main>
+        <script src="https://unpkg.com/vue@next"></script>
+        <script src="script.js"></script>
+    </body>
+</div>
 
 </html>

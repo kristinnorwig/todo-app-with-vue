@@ -3,6 +3,8 @@ Vue.createApp({
     return {
       state: [],
       newTodo: "",
+      filter: "all",
+      filteredTodos: [],
     };
   },
   methods: {
@@ -19,6 +21,7 @@ Vue.createApp({
         .then((jsonData) => {
           console.log(jsonData);
           this.state = jsonData;
+          this.filterTodos();
         });
     },
 
@@ -38,7 +41,7 @@ Vue.createApp({
           }
         })
         .then((jsonData) => {
-          getTodosFromAPI();
+          this.getTodosFromAPI();
         });
     },
 
@@ -54,7 +57,6 @@ Vue.createApp({
         .then((response) => response.json())
         .then((jsonData) => {
           console.log(jsonData);
-          renderTodos();
         });
     },
 
@@ -87,9 +89,24 @@ Vue.createApp({
     },
 
     removeDoneTodos() {},
-    filterTodos() {},
+
+    filterTodos() {
+      if (this.filter === "all") {
+        this.filteredTodos = this.state;
+      } else if (this.filter === "open") {
+        console.log("Filtering open todos");
+        this.filteredTodos = this.state.filter((todo) => !todo.done);
+      } else if (this.filter === "done") {
+        console.log("Filtering done todos");
+        this.filteredTodos = this.state.filter((todo) => todo.done);
+      }
+
+      console.log(this.filteredTodos);
+      console.log(this.filter);
+    },
   },
   computed: {},
+
   created() {
     this.getTodosFromAPI();
   },
